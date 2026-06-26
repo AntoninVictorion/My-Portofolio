@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antonin Victorion — Data & AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #2563EB;
+    --blue-light: #EEF2FF;
+    --dark: #1A1A1A;
+    --mid: #555;
+    --light: #888;
+    --border: rgba(26,26,26,0.1);
+    --bg-alt: #F7F8FA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  .pf-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 40px;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky; top: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px); z-index: 200;
+    max-width: 1000px; margin: 0 auto;
+  }
+  .pf-logo { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 500; letter-spacing: 0.02em; }
+  .pf-nav-links { display: flex; gap: 28px; list-style: none; }
+  .pf-nav-links a { font-size: 12px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); text-decoration: none; transition: color 0.2s; }
+  .pf-nav-links a:hover { color: var(--blue); }
+  .pf-nav-right { display: flex; align-items: center; gap: 20px; }
+  .lang-toggle { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: 1px solid var(--border); padding: 5px 10px; cursor: pointer; font-family: 'Inter', sans-serif; color: var(--light); border-radius: 2px; transition: all 0.2s; }
+  .lang-toggle:hover { color: var(--blue); border-color: var(--blue); }
+  .pf-nav-cta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); border-bottom: 1.5px solid var(--blue); padding-bottom: 2px; cursor: pointer; text-decoration: none; }
+
+  /* ─── WRAPPER ─── */
+  .pf-root { max-width: 1000px; margin: 0 auto; }
+
+  /* ─── HERO ─── */
+  .pf-hero { padding: 72px 40px 60px; }
+  .pf-hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; font-weight: 500; }
+  .pf-hero-name { font-family: 'Playfair Display', serif; font-size: 52px; line-height: 1.1; font-weight: 700; color: var(--dark); margin-bottom: 28px; max-width: 620px; }
+  .pf-divider { width: 40px; height: 2px; background: var(--blue); margin-bottom: 24px; }
+  .pf-hero-desc { font-size: 15px; line-height: 1.8; color: var(--mid); font-weight: 300; max-width: 540px; margin-bottom: 36px; }
+  .pf-hero-btns { display: flex; gap: 14px; }
+  .pf-btn-primary { background: var(--blue); color: #fff; padding: 13px 28px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500; border-radius: 2px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+  .pf-btn-primary:hover { opacity: 0.88; }
+  .pf-btn-secondary { background: transparent; color: var(--dark); padding: 12px 28px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(26,26,26,0.25); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 400; border-radius: 2px; text-decoration: none; display: inline-block; transition: border-color 0.2s; }
+  .pf-btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* ─── STATS ─── */
+  .pf-stats { display: flex; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin: 0 40px; }
+  .pf-stat { flex: 1; padding: 24px 28px; border-right: 0.5px solid var(--border); }
+  .pf-stat:last-child { border-right: none; }
+  .pf-stat-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; }
+  .pf-stat-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); margin-top: 4px; }
+
+  /* ─── SECTIONS ─── */
+  .pf-section { padding: 56px 40px; }
+  .pf-section-alt { background: var(--bg-alt); }
+  .pf-section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 36px; }
+  .pf-section-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 500; }
+
+  /* ─── PROJECT GRID ─── */
+  .pf-filter-bar { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .pf-filter-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 16px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-family: 'Inter', sans-serif; border-radius: 2px; transition: all 0.2s; color: var(--light); }
+  .pf-filter-btn.active, .pf-filter-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+
+  .pf-proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .pf-proj-card { border: 0.5px solid var(--border); background: #fff; cursor: pointer; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; border-radius: 3px; }
+  .pf-proj-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,99,235,0.1); }
+  .pf-proj-card[data-hidden] { display: none; }
+  .pf-proj-thumb { height: 130px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  .pf-proj-body { padding: 16px; }
+  .pf-proj-cat { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+  .pf-proj-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+  .pf-proj-stack { font-size: 11px; color: var(--light); }
+  .pf-proj-desc { font-size: 12px; color: var(--mid); line-height: 1.5; margin-top: 6px; font-weight: 300; }
+
+  /* ─── MODAL ─── */
+  .pf-modal-backdrop { position: fixed; inset: 0; background: rgba(10,10,10,0.7); z-index: 500; display: none; backdrop-filter: blur(4px); }
+  .pf-modal-backdrop.open { display: flex; }
+  .pf-modal { background: #fff; width: 90vw; max-width: 900px; height: 90vh; margin: auto; display: flex; overflow: hidden; border-radius: 4px; position: relative; }
+  .pf-modal-sidebar { width: 200px; flex-shrink: 0; border-right: 0.5px solid var(--border); padding: 32px 0; background: var(--bg-alt); }
+  .pf-modal-sidebar-title { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); padding: 0 24px 16px; }
+  .pf-sidebar-step { display: flex; align-items: center; gap: 10px; padding: 10px 24px; font-size: 12px; color: var(--light); cursor: pointer; transition: background 0.15s, color 0.15s; border-left: 2px solid transparent; }
+  .pf-sidebar-step:hover, .pf-sidebar-step.active { color: var(--blue); background: rgba(37,99,235,0.04); border-left-color: var(--blue); }
+  .pf-modal-content { flex: 1; overflow-y: auto; padding: 40px; }
+  .pf-modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--light); z-index: 10; }
+  .pf-modal-header { margin-bottom: 32px; }
+  .pf-modal-cat { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .pf-modal-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+  .pf-modal-stack { font-size: 12px; color: var(--light); }
+  .pf-modal-step-section { margin-bottom: 40px; }
+  .pf-step-anchor { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .pf-step-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 500; margin-bottom: 12px; }
+  .pf-step-text { font-size: 14px; line-height: 1.7; color: var(--mid); font-weight: 300; }
+  .pf-step-divider { height: 0.5px; background: var(--border); margin: 32px 0; }
+  .pf-code-block { background: #1A1A1A; color: #93B4F8; font-family: 'Courier New', monospace; font-size: 12px; padding: 16px 20px; border-radius: 3px; margin-top: 12px; overflow-x: auto; line-height: 1.6; }
+  .pf-modal-github { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); border: 1px solid var(--border); padding: 10px 20px; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+  .pf-modal-github:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* ─── EXPERIENCE ─── */
+  .pf-xp-list { display: flex; flex-direction: column; }
+  .pf-xp-item { display: grid; grid-template-columns: 140px 1fr; gap: 32px; padding: 22px 0; border-top: 0.5px solid var(--border); align-items: start; }
+  .pf-xp-date { font-size: 12px; color: var(--light); letter-spacing: 0.05em; padding-top: 2px; }
+  .pf-xp-role { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .pf-xp-company { font-size: 13px; color: var(--blue); margin-bottom: 6px; }
+  .pf-xp-desc { font-size: 13px; color: #666; line-height: 1.6; font-weight: 300; }
+  .pf-xp-tag { display: inline-block; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; background: var(--bg-alt); border: 0.5px solid var(--border); padding: 3px 8px; border-radius: 2px; color: var(--light); margin-top: 4px; }
+
+  /* ─── FORMATIONS & CERTIFICATIONS ─── */
+  .pf-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pf-skill-block { padding: 20px 24px; border: 0.5px solid var(--border); background: #fff; }
+  .pf-skill-cat { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .pf-skill-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .pf-skill-sub { font-size: 12px; color: var(--light); line-height: 1.5; font-weight: 300; }
+
+  .pf-techstack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .pf-tech-pill { font-size: 11px; letter-spacing: 0.08em; padding: 6px 14px; border: 0.5px solid var(--border); border-radius: 20px; color: var(--mid); background: #fff; }
+
+  /* ─── CONTACT FOOTER ─── */
+  .pf-contact { padding: 56px 40px; text-align: center; }
+  .pf-contact-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 500; margin-bottom: 12px; }
+  .pf-contact-sub { font-size: 14px; color: var(--mid); font-weight: 300; margin-bottom: 32px; }
+  .pf-contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .pf-contact-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); border: 1px solid var(--border); padding: 12px 24px; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+  .pf-contact-link:hover { border-color: var(--blue); color: var(--blue); }
+
+  .pf-footer { padding: 24px 40px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .pf-footer-logo { font-family: 'Playfair Display', serif; font-size: 15px; }
+  .pf-footer-note { font-size: 12px; color: #aaa; }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 700px) {
+    .pf-nav-links { display: none; }
+    .pf-hero-name { font-size: 34px; }
+    .pf-stats { flex-wrap: wrap; }
+    .pf-stat { border-right: none; border-bottom: 0.5px solid var(--border); min-width: 50%; }
+    .pf-proj-grid { grid-template-columns: 1fr 1fr; }
+    .pf-skills-grid { grid-template-columns: 1fr; }
+    .pf-section, .pf-hero, .pf-stats { padding-left: 20px; padding-right: 20px; }
+    .pf-stats { margin: 0 20px; }
+    .pf-nav { padding: 16px 20px; }
+    .pf-modal { width: 100vw; height: 100vh; border-radius: 0; flex-direction: column; }
+    .pf-modal-sidebar { width: 100%; height: auto; border-right: none; border-bottom: 0.5px solid var(--border); padding: 12px 0; display: flex; flex-direction: row; overflow-x: auto; }
+    .pf-modal-sidebar-title { display: none; }
+    .pf-sidebar-step { white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; }
+    .pf-sidebar-step.active { border-bottom-color: var(--blue); border-left-color: transparent; }
+    .pf-xp-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── STICKY NAV ─── -->
+<nav class="pf-nav" id="top-nav">
+  <div class="pf-logo">A. Victorion</div>
+  <ul class="pf-nav-links">
+    <li><a href="#projects" data-i18n="nav.projects">Projets</a></li>
+    <li><a href="#experience" data-i18n="nav.experience">Expériences</a></li>
+    <li><a href="#education" data-i18n="nav.education">Formation</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="pf-nav-right">
+    <button class="lang-toggle" id="lang-btn">EN</button>
+    <a href="mailto:victorionantonin17@gmail.com" class="pf-nav-cta" data-i18n="nav.cta">Me contacter</a>
+  </div>
+</nav>
+
+<div class="pf-root">
+
+  <!-- ─── HERO ─── -->
+  <section class="pf-hero fade-up">
+    <p class="pf-hero-eyebrow" data-i18n="hero.eyebrow">Étudiant Ingénieur Data & IA</p>
+    <h1 class="pf-hero-name" data-i18n="hero.title">Transformer la donnée en décisions intelligentes.</h1>
+    <div class="pf-divider"></div>
+    <p class="pf-hero-desc" data-i18n="hero.desc">Étudiant en 3e année à l'EFREI Paris, spécialisation Data & IA. Je cherche un stage de 5 mois à partir de novembre 2026 pour mettre en pratique mes compétences en Machine Learning et Deep Learning.</p>
+    <div class="pf-hero-btns">
+      <a href="#projects" class="pf-btn-primary" data-i18n="hero.btn1">Voir mes projets</a>
+      <a href="#education" class="pf-btn-secondary" data-i18n="hero.btn2">Mon parcours</a>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─── -->
+  <div class="pf-stats fade-up">
+    <div class="pf-stat">
+      <div class="pf-stat-num" data-count="3" data-suffix=" ans">0</div>
+      <div class="pf-stat-label" data-i18n="stats.formation">Formation</div>
+    </div>
+    <div class="pf-stat">
+      <div class="pf-stat-num" data-count="10" data-prefix="" data-suffix="+">0</div>
+      <div class="pf-stat-label" data-i18n="stats.projects">Projets</div>
+    </div>
+    <div class="pf-stat">
+      <div class="pf-stat-num" data-count="825" data-suffix="">0</div>
+      <div class="pf-stat-label">TOEIC</div>
+    </div>
+    <div class="pf-stat">
+      <div class="pf-stat-num" style="font-size:18px;padding-top:6px;">EFREI</div>
+      <div class="pf-stat-label" data-i18n="stats.school">Paris</div>
+    </div>
+  </div>
+
+  <!-- ─── PROJECTS ─── -->
+  <section class="pf-section" id="projects">
+    <div class="pf-section-header fade-up">
+      <h2 class="pf-section-title" data-i18n="section.projects">Projets</h2>
+    </div>
+
+    <div class="pf-filter-bar fade-up" id="filter-bar">
+      <button class="pf-filter-btn active" data-filter="all" data-i18n="filter.all">Tous</button>
+      <button class="pf-filter-btn" data-filter="deep" data-i18n="filter.deep">Deep Learning</button>
+      <button class="pf-filter-btn" data-filter="data" data-i18n="filter.data">Data & SQL</button>
+      <button class="pf-filter-btn" data-filter="ml" data-i18n="filter.ml">Machine Learning</button>
+      <button class="pf-filter-btn" data-filter="other" data-i18n="filter.other">Autres</button>
+    </div>
+
+    <div class="pf-proj-grid fade-up" id="proj-grid">
+      <!-- Cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <section class="pf-section pf-section-alt" id="experience">
+    <div class="pf-section-header fade-up">
+      <h2 class="pf-section-title" data-i18n="section.experience">Expériences professionnelles</h2>
+    </div>
+    <div class="pf-xp-list fade-up" id="xp-list">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- ─── FORMATION & CERTIFICATIONS ─── -->
+  <section class="pf-section" id="education">
+    <div class="pf-section-header fade-up">
+      <h2 class="pf-section-title" data-i18n="section.education">Formation & Certifications</h2>
+    </div>
+    <div class="pf-skills-grid fade-up" id="edu-grid">
+      <!-- Injected by JS -->
+    </div>
+
+    <div style="margin-top:36px;" class="fade-up">
+      <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);margin-bottom:16px;" data-i18n="skills.title">Compétences techniques</div>
+      <div class="pf-techstack" id="tech-stack"></div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section class="pf-contact fade-up" id="contact">
+    <h2 class="pf-contact-title" data-i18n="contact.title">Travaillons ensemble</h2>
+    <p class="pf-contact-sub" data-i18n="contact.sub">Stage Data & IA · Novembre 2026 – Mars 2027 · Paris & Remote</p>
+    <div class="pf-contact-links">
+      <a href="mailto:victorionantonin17@gmail.com" class="pf-contact-link">✉ Email</a>
+      <a href="https://www.linkedin.com/in/antonin-victorion-b9b065291/" target="_blank" class="pf-contact-link">in LinkedIn</a>
+      <a href="https://github.com/AntoninVictorion" target="_blank" class="pf-contact-link">⌥ GitHub</a>
+    </div>
+  </section>
+
+  <footer class="pf-footer">
+    <span class="pf-footer-logo">Antonin Victorion</span>
+    <span class="pf-footer-note">Villejuif, Paris — © 2026</span>
+  </footer>
+</div>
+
+<!-- ─── PROJECT MODAL ─── -->
+<div class="pf-modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true">
+  <div class="pf-modal">
+    <button class="pf-modal-close" id="modal-close" aria-label="Fermer">✕</button>
+    <div class="pf-modal-sidebar" id="modal-sidebar">
+      <div class="pf-modal-sidebar-title" data-i18n="modal.steps">Étapes</div>
+    </div>
+    <div class="pf-modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ─── i18n ───
+const T = {
+  fr: {
+    "nav.projects": "Projets",
+    "nav.experience": "Expériences",
+    "nav.education": "Formation",
+    "nav.contact": "Contact",
+    "nav.cta": "Me contacter",
+    "hero.eyebrow": "Étudiant Ingénieur Data & IA",
+    "hero.title": "Transformer la donnée en décisions intelligentes.",
+    "hero.desc": "Étudiant en 3e année à l'EFREI Paris, spécialisation Data & IA. Je cherche un stage de 5 mois à partir de novembre 2026 pour mettre en pratique mes compétences en Machine Learning et Deep Learning.",
+    "hero.btn1": "Voir mes projets",
+    "hero.btn2": "Mon parcours",
+    "stats.formation": "Années de formation",
+    "stats.projects": "Projets",
+    "stats.school": "Paris",
+    "section.projects": "Projets",
+    "section.experience": "Expériences professionnelles",
+    "section.education": "Formation & Certifications",
+    "filter.all": "Tous",
+    "filter.deep": "Deep Learning",
+    "filter.data": "Data & SQL",
+    "filter.ml": "Machine Learning",
+    "filter.other": "Autres",
+    "skills.title": "Compétences techniques",
+    "contact.title": "Travaillons ensemble",
+    "contact.sub": "Stage Data & IA · Novembre 2026 – Mars 2027 · Paris & Remote",
+    "modal.steps": "Étapes",
+    "modal.github": "Voir sur GitHub",
+    "xp.student": "Job étudiant",
+  },
+  en: {
+    "nav.projects": "Projects",
+    "nav.experience": "Experience",
+    "nav.education": "Education",
+    "nav.contact": "Contact",
+    "nav.cta": "Contact me",
+    "hero.eyebrow": "Data & AI Engineering Student",
+    "hero.title": "Turning data into intelligent decisions.",
+    "hero.desc": "3rd-year engineering student at EFREI Paris, specializing in Data & AI. Looking for a 5-month internship starting November 2026 to apply my skills in Machine Learning and Deep Learning.",
+    "hero.btn1": "View my projects",
+    "hero.btn2": "My background",
+    "stats.formation": "Years of training",
+    "stats.projects": "Projects",
+    "stats.school": "Paris",
+    "section.projects": "Projects",
+    "section.experience": "Professional experience",
+    "section.education": "Education & Certifications",
+    "filter.all": "All",
+    "filter.deep": "Deep Learning",
+    "filter.data": "Data & SQL",
+    "filter.ml": "Machine Learning",
+    "filter.other": "Others",
+    "skills.title": "Technical skills",
+    "contact.title": "Let's work together",
+    "contact.sub": "Data & AI Internship · November 2026 – March 2027 · Paris & Remote",
+    "modal.steps": "Steps",
+    "modal.github": "View on GitHub",
+    "xp.student": "Student job",
+  }
+};
+
+let lang = 'fr';
+
+function detectLang() {
+  const l = navigator.language || '';
+  return l.startsWith('en') ? 'en' : 'fr';
+}
+
+function applyLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('lang-btn').textContent = l === 'fr' ? 'EN' : 'FR';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (T[l][key]) el.textContent = T[l][key];
+  });
+  renderProjects();
+  renderXP();
+  renderEdu();
+}
+
+document.getElementById('lang-btn').addEventListener('click', () => {
+  applyLang(lang === 'fr' ? 'en' : 'fr');
+});
+
+// ─── PROJECTS DATA ───
+const PROJECTS = [
+  {
+    id: 'cancer',
+    cat: 'deep',
+    catLabel: { fr: 'Deep Learning', en: 'Deep Learning' },
+    emoji: '🔬',
+    bg: '#EEF2FF',
+    title: { fr: 'Détection du Cancer du Sein (CNN)', en: 'Breast Cancer Detection (CNN)' },
+    stack: 'Python · PyTorch',
+    desc: { fr: 'Classification binaire bénin/malin sur dataset médical CBIS-DDSM', en: 'Binary benign/malignant classification on CBIS-DDSM medical dataset' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      {
+        icon: '📊', key: 'data',
+        label: { fr: 'Data', en: 'Data' },
+        title: { fr: 'Données & Preprocessing', en: 'Data & Preprocessing' },
+        content: { fr: 'Dataset CBIS-DDSM (Curated Breast Imaging Subset of DDSM) : mammographies annotées bénin/malin. Fort déséquilibre de classes (~80/20). Preprocessing : redimensionnement 224×224, normalisation, augmentation (flips, rotations) pour équilibrer les distributions.', en: 'CBIS-DDSM dataset: annotated benign/malignant mammograms. Significant class imbalance (~80/20). Preprocessing: resize to 224×224, normalization, augmentation (flips, rotations) to balance class distributions.' },
+        code: `# Dataset loading & augmentation
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize([0.5], [0.5])
+])`
+      },
+      {
+        icon: '🧠', key: 'model',
+        label: { fr: 'Modèle', en: 'Model' },
+        title: { fr: 'Architecture CNN', en: 'CNN Architecture' },
+        content: { fr: 'Réseau convolutionnel profond avec 4 blocs convolutifs (Conv2D + BatchNorm + ReLU + MaxPool), suivi d\'un classifieur entièrement connecté. Utilisation de dropout (0.5) pour régularisation.', en: 'Deep convolutional network with 4 conv blocks (Conv2D + BatchNorm + ReLU + MaxPool), followed by a fully connected classifier. Dropout (0.5) for regularization.' },
+        code: `class BreastCancerCNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(1, 32, 3, padding=1),
+            nn.BatchNorm2d(32), nn.ReLU(),
+            nn.MaxPool2d(2),
+            # ... 3 more blocks
+        )
+        self.classifier = nn.Linear(512, 2)`
+      },
+      {
+        icon: '📈', key: 'eval',
+        label: { fr: 'Évaluation', en: 'Evaluation' },
+        title: { fr: 'Métriques & Gestion du déséquilibre', en: 'Metrics & Class Imbalance' },
+        content: { fr: 'Métriques utilisées : AUC-ROC, F1-score (macro), matrice de confusion. Gestion du déséquilibre par weighted loss (BCEWithLogitsLoss avec pos_weight). Validation croisée k-fold.', en: 'Metrics: AUC-ROC, macro F1-score, confusion matrix. Class imbalance handled via weighted loss (BCEWithLogitsLoss with pos_weight). K-fold cross-validation.' }
+      },
+      {
+        icon: '🏆', key: 'result',
+        label: { fr: 'Résultat', en: 'Result' },
+        title: { fr: 'Résultats', en: 'Results' },
+        content: { fr: 'Résultats en cours de finalisation. Objectif : AUC > 0.85 sur le set de test. Architecture en cours d\'optimisation avec techniques de fine-tuning et transfer learning (ResNet-18).', en: 'Results currently being finalized. Target: AUC > 0.85 on test set. Architecture being optimized with fine-tuning and transfer learning (ResNet-18).' }
+      }
+    ]
+  },
+  {
+    id: 'cifar',
+    cat: 'deep',
+    catLabel: { fr: 'Deep Learning', en: 'Deep Learning' },
+    emoji: '🎨',
+    bg: '#F0F4FF',
+    title: { fr: 'Classification CIFAR-10', en: 'CIFAR-10 Classification' },
+    stack: 'Python · PyTorch',
+    desc: { fr: 'Reconnaissance d\'objets en couleur via CNN avec filtres 3D', en: 'Color object recognition via CNN with 3D filters' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      {
+        icon: '📊', key: 'data',
+        label: { fr: 'Data', en: 'Data' },
+        title: { fr: 'Dataset CIFAR-10', en: 'CIFAR-10 Dataset' },
+        content: { fr: 'CIFAR-10 : 60 000 images couleur 32×32, 10 classes (avion, voiture, oiseau, chat, cerf, chien, grenouille, cheval, navire, camion). Split 50k train / 10k test. Normalisation par channel RGB.', en: 'CIFAR-10: 60,000 color images 32×32, 10 classes (plane, car, bird, cat, deer, dog, frog, horse, ship, truck). 50k train / 10k test split. Per-channel RGB normalization.' },
+        code: `transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize(
+        (0.4914, 0.4822, 0.4465),
+        (0.2023, 0.1994, 0.2010)
+    )
+])`
+      },
+      {
+        icon: '🧠', key: 'model',
+        label: { fr: 'Modèle', en: 'Model' },
+        title: { fr: 'CNN avec filtres 3D', en: 'CNN with 3D filters' },
+        content: { fr: 'CNN multi-canaux avec filtres convolutifs 3D (traitant les 3 canaux RGB simultanément). Blocs résiduels inspirés de ResNet pour contrer le gradient vanishing. Max-Pooling progressif.', en: 'Multi-channel CNN with 3D convolutional filters (processing all 3 RGB channels simultaneously). Residual blocks inspired by ResNet to counter vanishing gradient. Progressive Max-Pooling.' }
+      },
+      {
+        icon: '📈', key: 'eval',
+        label: { fr: 'Évaluation', en: 'Evaluation' },
+        title: { fr: 'Lutte contre l\'overfitting', en: 'Fighting Overfitting' },
+        content: { fr: 'Techniques appliquées : Dropout, L2 regularization, Early stopping, Data augmentation. Monitoring des courbes train/val loss pour détecter l\'overfit.', en: 'Applied techniques: Dropout, L2 regularization, Early stopping, Data augmentation. Monitoring train/val loss curves to detect overfitting.' }
+      },
+      {
+        icon: '🏆', key: 'result',
+        label: { fr: 'Résultat', en: 'Result' },
+        title: { fr: 'Résultats', en: 'Results' },
+        content: { fr: 'Accuracy test en cours de mesure. Architecture finale entraînée sur 50 epochs. Comparaison avec baseline MLP pour quantifier l\'apport des convolutions.', en: 'Test accuracy being measured. Final architecture trained over 50 epochs. Comparison with MLP baseline to quantify the contribution of convolutions.' }
+      }
+    ]
+  },
+  {
+    id: 'artconnect',
+    cat: 'data',
+    catLabel: { fr: 'Data & SQL', en: 'Data & SQL' },
+    emoji: '🗃️',
+    bg: '#F0FFF4',
+    title: { fr: 'ArtConnect — Architecture BDD', en: 'ArtConnect — DB Architecture' },
+    stack: 'SQL · Java · JDBC',
+    desc: { fr: 'Schéma relationnel 3FN avec triggers, procédures stockées et couche DAO/JDBC', en: 'Normalized relational schema with triggers, stored procedures, and DAO/JDBC layer' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      {
+        icon: '📊', key: 'data',
+        label: { fr: 'Modélisation', en: 'Modeling' },
+        title: { fr: 'Conception du schéma relationnel', en: 'Relational Schema Design' },
+        content: { fr: 'Conception d\'un MCD (Merise) puis transformation en modèle relationnel normalisé jusqu\'en 3ème Forme Normale (3FN). Entités principales : Artiste, Œuvre, Exposition, Galerie, Utilisateur.', en: 'Conceptual data model (Merise), then transformation to a relational model normalized to 3rd Normal Form (3NF). Main entities: Artist, Artwork, Exhibition, Gallery, User.' },
+        code: `CREATE TABLE Artiste (
+  id_artiste INT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  pays_origine VARCHAR(50),
+  date_naissance DATE
+);
+
+CREATE TABLE Oeuvre (
+  id_oeuvre INT PRIMARY KEY,
+  titre VARCHAR(200),
+  id_artiste INT REFERENCES Artiste(id_artiste),
+  annee_creation INT
+);`
+      },
+      {
+        icon: '🧠', key: 'model',
+        label: { fr: 'Triggers & Procédures', en: 'Triggers & Procedures' },
+        title: { fr: 'Automatisation SQL', en: 'SQL Automation' },
+        content: { fr: 'Triggers pour maintenir l\'intégrité référentielle et journaliser les modifications. Procédures stockées pour les requêtes métier complexes (recherche multicritères, statistiques par galerie).', en: 'Triggers for referential integrity and change logging. Stored procedures for complex business queries (multi-criteria search, per-gallery statistics).' },
+        code: `CREATE TRIGGER log_modification
+AFTER UPDATE ON Oeuvre
+FOR EACH ROW
+BEGIN
+  INSERT INTO Journal_Modifications
+  VALUES (NOW(), OLD.id_oeuvre, USER());
+END;`
+      },
+      {
+        icon: '📈', key: 'eval',
+        label: { fr: 'Couche Java', en: 'Java Layer' },
+        title: { fr: 'DAO & JDBC', en: 'DAO & JDBC' },
+        content: { fr: 'Pattern DAO (Data Access Object) en Java pour découpler la logique métier de l\'accès aux données. Connexion JDBC avec gestion des transactions et des exceptions SQL.', en: 'DAO pattern in Java to decouple business logic from data access. JDBC connection with transaction management and SQL exception handling.' }
+      },
+      {
+        icon: '🏆', key: 'result',
+        label: { fr: 'Résultat', en: 'Result' },
+        title: { fr: 'Résultats', en: 'Results' },
+        content: { fr: 'Base de données fonctionnelle avec schéma normalisé, couverture complète des cas d\'usage métier. Application Java capable d\'effectuer toutes les opérations CRUD via la couche DAO.', en: 'Functional database with normalized schema, full business use case coverage. Java application performing all CRUD operations through the DAO layer.' }
+      }
+    ]
+  },
+  {
+    id: 'chatbot',
+    cat: 'other',
+    catLabel: { fr: 'Autres', en: 'Others' },
+    emoji: '💬',
+    bg: '#FFF7ED',
+    title: { fr: 'Chatbot NLP (TF-IDF)', en: 'NLP Chatbot (TF-IDF)' },
+    stack: 'Python · NLTK · Scikit-Learn',
+    desc: { fr: 'Agent conversationnel basé sur similarité textuelle et vectorisation TF-IDF', en: 'Conversational agent based on textual similarity and TF-IDF vectorization' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      { icon: '📊', key: 'data', label: { fr: 'Data', en: 'Data' }, title: { fr: 'Corpus & Tokenisation', en: 'Corpus & Tokenization' }, content: { fr: 'Construction d\'une base de connaissances à partir de textes structurés. Preprocessing NLP : tokenisation, suppression des stop-words, lemmatisation avec NLTK.', en: 'Knowledge base built from structured text. NLP preprocessing: tokenization, stop-word removal, lemmatization with NLTK.' } },
+      { icon: '🧠', key: 'model', label: { fr: 'Modèle', en: 'Model' }, title: { fr: 'Vectorisation TF-IDF', en: 'TF-IDF Vectorization' }, content: { fr: 'Représentation vectorielle des phrases par TF-IDF (Term Frequency–Inverse Document Frequency). Calcul de similarité cosinus entre la requête utilisateur et les réponses candidates.', en: 'Sentence vectorization using TF-IDF. Cosine similarity computation between user query and candidate responses.' }, code: `from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(corpus)
+
+def get_response(query):
+    q_vec = vectorizer.transform([query])
+    sims = cosine_similarity(q_vec, tfidf_matrix)
+    return corpus[sims.argmax()]` },
+      { icon: '📈', key: 'eval', label: { fr: 'Évaluation', en: 'Evaluation' }, title: { fr: 'Tests', en: 'Testing' }, content: { fr: 'Évaluation qualitative sur un jeu de questions-réponses. Analyse des cas d\'échec (hors-domaine, ambiguïtés lexicales).', en: 'Qualitative evaluation on a Q&A set. Analysis of failure cases (out-of-domain, lexical ambiguities).' } },
+      { icon: '🏆', key: 'result', label: { fr: 'Résultat', en: 'Result' }, title: { fr: 'Résultats', en: 'Results' }, content: { fr: 'Chatbot fonctionnel répondant correctement à la majorité des questions dans le domaine défini. Bonnes bases pour une évolution vers un modèle seq2seq.', en: 'Functional chatbot answering correctly in the defined domain. Good foundation for evolution toward a seq2seq model.' } }
+    ]
+  },
+  {
+    id: 'transport',
+    cat: 'other',
+    catLabel: { fr: 'Autres', en: 'Others' },
+    emoji: '🚚',
+    bg: '#F0FFF4',
+    title: { fr: 'Optimisation Réseaux de Transport', en: 'Transport Network Optimization' },
+    stack: 'Python',
+    desc: { fr: 'Minimisation de coûts logistiques (Nord-Ouest, Balas-Hammer, marche-pied)', en: 'Logistics cost minimization (North-West, Balas-Hammer, stepping stone)' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      { icon: '📊', key: 'data', label: { fr: 'Problème', en: 'Problem' }, title: { fr: 'Modélisation', en: 'Modeling' }, content: { fr: 'Problème de transport : minimiser les coûts d\'acheminement entre fournisseurs et clients avec contraintes d\'offre et de demande. Modélisation sous forme de tableau de coûts.', en: 'Transportation problem: minimize shipping costs between suppliers and customers with supply/demand constraints. Modeled as a cost matrix.' } },
+      { icon: '🧠', key: 'model', label: { fr: 'Algorithmes', en: 'Algorithms' }, title: { fr: 'Méthodes d\'optimisation', en: 'Optimization Methods' }, content: { fr: 'Implémentation de 3 méthodes : Nord-Ouest (solution de base), Balas-Hammer (solution admissible améliorée), Marche-pied (optimisation vers l\'optimal).', en: 'Implementation of 3 methods: North-West corner (basic solution), Balas-Hammer (improved feasible solution), Stepping Stone (optimization toward optimality).' } },
+      { icon: '📈', key: 'eval', label: { fr: 'Comparaison', en: 'Comparison' }, title: { fr: 'Comparaison des méthodes', en: 'Method Comparison' }, content: { fr: 'Comparaison systématique des coûts totaux obtenus par chaque méthode sur plusieurs instances. Visualisation de la convergence vers l\'optimal.', en: 'Systematic comparison of total costs obtained by each method on multiple instances. Visualization of convergence toward optimality.' } },
+      { icon: '🏆', key: 'result', label: { fr: 'Résultat', en: 'Result' }, title: { fr: 'Résultats', en: 'Results' }, content: { fr: 'Algorithme Balas-Hammer + marche-pied converge vers l\'optimal théorique sur tous les cas de test. Gain de coût moyen de 23% par rapport à la méthode Nord-Ouest seule.', en: 'Balas-Hammer + stepping stone converges to theoretical optimum on all test cases. Average cost saving of 23% compared to North-West method alone.' } }
+    ]
+  },
+  {
+    id: 'floyd',
+    cat: 'other',
+    catLabel: { fr: 'Autres', en: 'Others' },
+    emoji: '🔗',
+    bg: '#FFF1F2',
+    title: { fr: 'Floyd-Warshall', en: 'Floyd-Warshall' },
+    stack: 'Python',
+    desc: { fr: 'Chemins de valeurs minimales dans des graphes orientés, détection de circuits absorbants', en: 'Minimum-weight paths in directed graphs, negative cycle detection' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      { icon: '📊', key: 'data', label: { fr: 'Graphes', en: 'Graphs' }, title: { fr: 'Représentation des graphes', en: 'Graph Representation' }, content: { fr: 'Représentation matricielle des graphes orientés pondérés. Initialisation avec ∞ pour les arêtes inexistantes et 0 sur la diagonale.', en: 'Matrix representation of weighted directed graphs. Initialization with ∞ for non-existent edges and 0 on the diagonal.' } },
+      { icon: '🧠', key: 'model', label: { fr: 'Algorithme', en: 'Algorithm' }, title: { fr: 'Floyd-Warshall', en: 'Floyd-Warshall' }, content: { fr: 'Implémentation de l\'algorithme All-Pairs Shortest Path en O(n³). Détection des circuits absorbants (valeur négative sur la diagonale après convergence).', en: 'All-Pairs Shortest Path algorithm in O(n³). Detection of negative cycles (negative diagonal values after convergence).' }, code: `def floyd_warshall(graph):
+    n = len(graph)
+    dist = [row[:] for row in graph]
+    
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+    
+    # Detect negative cycles
+    for i in range(n):
+        if dist[i][i] < 0:
+            return None, True  # negative cycle
+    return dist, False` },
+      { icon: '📈', key: 'eval', label: { fr: 'Tests', en: 'Tests' }, title: { fr: 'Validation', en: 'Validation' }, content: { fr: 'Tests sur graphes avec et sans circuits absorbants. Vérification des chemins reconstruits par backtracking.', en: 'Tests on graphs with and without negative cycles. Verification of reconstructed paths by backtracking.' } },
+      { icon: '🏆', key: 'result', label: { fr: 'Résultat', en: 'Result' }, title: { fr: 'Résultats', en: 'Results' }, content: { fr: 'Algorithme fonctionnel avec reconstruction complète des chemins et détection robuste des circuits absorbants.', en: 'Functional algorithm with full path reconstruction and robust negative cycle detection.' } }
+    ]
+  },
+  {
+    id: 'cdataframe',
+    cat: 'other',
+    catLabel: { fr: 'Autres', en: 'Others' },
+    emoji: '⚙️',
+    bg: '#F5F5F5',
+    title: { fr: 'C-DataFrame Library', en: 'C-DataFrame Library' },
+    stack: 'C',
+    desc: { fr: 'Structure de données en C pour manipulation performante de tableaux', en: 'C data structure for high-performance tabular data manipulation' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      { icon: '📊', key: 'data', label: { fr: 'Conception', en: 'Design' }, title: { fr: 'Architecture de la librairie', en: 'Library Architecture' }, content: { fr: 'Structure DataFrame en C : colonnes typées (int, float, string), gestion dynamique de la mémoire avec malloc/realloc, header générique.', en: 'C DataFrame structure: typed columns (int, float, string), dynamic memory management with malloc/realloc, generic header.' } },
+      { icon: '🧠', key: 'model', label: { fr: 'Implémentation', en: 'Implementation' }, title: { fr: 'Gestion mémoire', en: 'Memory Management' }, content: { fr: 'Allocation dynamique de colonnes hétérogènes. Implémentation des opérations de base : ajout/suppression ligne/colonne, sélection, tri, statistiques.', en: 'Dynamic allocation of heterogeneous columns. Basic operations: add/remove row/column, selection, sorting, statistics.' }, code: `typedef struct {
+    char **col_names;
+    void ***data;
+    int *col_types; // 0=int, 1=float, 2=str
+    int n_rows, n_cols;
+} DataFrame;
+
+DataFrame* df_create(char **names, int *types, int ncols);
+void df_add_row(DataFrame *df, void **row_data);
+void df_print(DataFrame *df);` },
+      { icon: '📈', key: 'eval', label: { fr: 'Tests', en: 'Tests' }, title: { fr: 'Tests de performance', en: 'Performance Tests' }, content: { fr: 'Benchmarks sur grands datasets (100k+ lignes). Profiling avec Valgrind pour détecter les fuites mémoire.', en: 'Benchmarks on large datasets (100k+ rows). Profiling with Valgrind to detect memory leaks.' } },
+      { icon: '🏆', key: 'result', label: { fr: 'Résultat', en: 'Result' }, title: { fr: 'Résultats', en: 'Results' }, content: { fr: 'Librairie fonctionnelle, zéro fuite mémoire. Performances comparables à une implémentation Python/Pandas pour les opérations de base.', en: 'Functional library, zero memory leaks. Performance comparable to Python/Pandas for basic operations.' } }
+    ]
+  },
+  {
+    id: 'roverrun',
+    cat: 'other',
+    catLabel: { fr: 'Autres', en: 'Others' },
+    emoji: '🤖',
+    bg: '#E8EDFF',
+    title: { fr: 'RoverRun', en: 'RoverRun' },
+    stack: 'C',
+    desc: { fr: 'Optimisation de trajectoires pour véhicule autonome', en: 'Trajectory optimization for autonomous vehicle' },
+    github: 'https://github.com/AntoninVictorion',
+    steps: [
+      { icon: '📊', key: 'data', label: { fr: 'Terrain', en: 'Terrain' }, title: { fr: 'Modélisation du terrain', en: 'Terrain Modeling' }, content: { fr: 'Grille 2D représentant le terrain avec coûts de déplacement variables (obstacles, zones difficiles). Chargement depuis fichier de configuration.', en: '2D grid representing terrain with variable movement costs (obstacles, rough zones). Loaded from configuration file.' } },
+      { icon: '🧠', key: 'model', label: { fr: 'Pathfinding', en: 'Pathfinding' }, title: { fr: 'Algorithme de recherche de chemin', en: 'Pathfinding Algorithm' }, content: { fr: 'Implémentation de Dijkstra pour trouver le chemin de coût minimal. Optimisation des déplacements du rover en tenant compte des contraintes énergétiques.', en: 'Dijkstra implementation for minimum-cost path. Rover movement optimization considering energy constraints.' } },
+      { icon: '📈', key: 'eval', label: { fr: 'Simulation', en: 'Simulation' }, title: { fr: 'Simulation', en: 'Simulation' }, content: { fr: 'Simulation de trajectoires sur différentes configurations de terrain. Affichage ASCII du chemin optimal.', en: 'Trajectory simulation on different terrain configurations. ASCII display of the optimal path.' } },
+      { icon: '🏆', key: 'result', label: { fr: 'Résultat', en: 'Result' }, title: { fr: 'Résultats', en: 'Results' }, content: { fr: 'Rover naviguant de façon optimale sur tous les terrains de test. Réduction de 30% du coût énergétique par rapport à un chemin naïf (ligne droite).', en: 'Rover navigating optimally on all test terrains. 30% energy cost reduction vs. naive straight-line path.' } }
+    ]
+  }
+];
+
+function renderProjects() {
+  const grid = document.getElementById('proj-grid');
+  grid.innerHTML = '';
+  PROJECTS.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'pf-proj-card';
+    card.dataset.cat = p.cat;
+    card.innerHTML = `
+      <div class="pf-proj-thumb" style="background:${p.bg}">${p.emoji}</div>
+      <div class="pf-proj-body">
+        <div class="pf-proj-cat">${p.catLabel[lang]}</div>
+        <div class="pf-proj-title">${p.title[lang]}</div>
+        <div class="pf-proj-stack">${p.stack}</div>
+        <div class="pf-proj-desc">${p.desc[lang]}</div>
+      </div>`;
+    card.addEventListener('click', () => openModal(p));
+    grid.appendChild(card);
+  });
+  applyFilter(currentFilter);
+}
+
+let currentFilter = 'all';
+document.getElementById('filter-bar').addEventListener('click', e => {
+  const btn = e.target.closest('.pf-filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.pf-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  applyFilter(currentFilter);
+});
+
+function applyFilter(f) {
+  currentFilter = f;
+  document.querySelectorAll('.pf-proj-card').forEach(c => {
+    c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none';
+  });
+}
+
+// ─── MODAL ───
+function openModal(p) {
+  const sidebar = document.getElementById('modal-sidebar');
+  const content = document.getElementById('modal-content');
+
+  sidebar.innerHTML = `<div class="pf-modal-sidebar-title" data-i18n="modal.steps">${T[lang]['modal.steps']}</div>`;
+  p.steps.forEach((s, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'pf-sidebar-step' + (i === 0 ? ' active' : '');
+    btn.innerHTML = `${s.icon} ${s.label[lang]}`;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pf-sidebar-step').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('step-' + s.key)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    sidebar.appendChild(btn);
+  });
+
+  content.innerHTML = `
+    <div class="pf-modal-header">
+      <div class="pf-modal-cat">${p.catLabel[lang]}</div>
+      <div class="pf-modal-title">${p.title[lang]}</div>
+      <div class="pf-modal-stack">${p.stack}</div>
+    </div>
+    ${p.steps.map(s => `
+      <div class="pf-modal-step-section" id="step-${s.key}">
+        <div class="pf-step-anchor">${s.icon} ${s.label[lang]}</div>
+        <div class="pf-step-title">${s.title[lang]}</div>
+        <div class="pf-step-text">${s.content[lang]}</div>
+        ${s.code ? `<pre class="pf-code-block">${s.code.replace(/</g,'&lt;')}</pre>` : ''}
+        <div class="pf-step-divider"></div>
+      </div>`).join('')}
+    <a href="${p.github}" target="_blank" class="pf-modal-github">⌥ ${T[lang]['modal.github']}</a>
+  `;
+
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Update active sidebar step on scroll
+  content.addEventListener('scroll', () => {
+    const steps = p.steps.map(s => document.getElementById('step-' + s.key));
+    const btns = sidebar.querySelectorAll('.pf-sidebar-step');
+    let active = 0;
+    steps.forEach((el, i) => {
+      if (el && content.scrollTop >= el.offsetTop - 60) active = i;
+    });
+    btns.forEach((b, i) => b.classList.toggle('active', i === active));
+  });
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-backdrop').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-backdrop')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ─── EXPERIENCE ───
+const XP_DATA = [
+  { date: 'Juin–Août 2025', role: { fr: 'Aide-boulanger', en: 'Bakery assistant' }, co: 'Boulangerie Lubrano, Montpellier' },
+  { date: 'Janv. 2025', role: { fr: 'Vendeur', en: 'Sales assistant' }, co: 'Librairie Gibert Joseph, Montpellier' },
+  { date: 'Juin–Août 2024', role: { fr: 'Vendeur / Caissier', en: 'Sales & Cashier' }, co: 'Le Neptune, Montpellier' },
+  { date: 'Août 2023', role: { fr: 'Agent de nettoyage des plages', en: 'Beach cleaning agent' }, co: 'Mairie de Frontignan' },
+];
+
+function renderXP() {
+  const list = document.getElementById('xp-list');
+  list.innerHTML = XP_DATA.map(x => `
+    <div class="pf-xp-item">
+      <div class="pf-xp-date">${x.date}</div>
+      <div>
+        <div class="pf-xp-role">${x.role[lang]}</div>
+        <div class="pf-xp-company">${x.co}</div>
+        <span class="pf-xp-tag">${T[lang]['xp.student']}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ─── EDUCATION ───
+const EDU_DATA = [
+  { cat: { fr: 'Formation', en: 'Education' }, name: { fr: 'Ingénieur Data & IA', en: 'Data & AI Engineer' }, sub: { fr: 'EFREI Paris · depuis 2023 · 2e école privée France, 1re en informatique', en: 'EFREI Paris · since 2023 · 2nd private engineering school in France, 1st in CS' } },
+  { cat: { fr: 'Échange international', en: 'International Exchange' }, name: { fr: 'Semestre à Toronto', en: 'Semester in Toronto' }, sub: { fr: 'ILAC, Canada · 2024', en: 'ILAC, Canada · 2024' } },
+  { cat: { fr: 'Baccalauréat', en: 'High School' }, name: { fr: 'Mention Bien — Maths & Physique', en: 'Honours — Maths & Physics' }, sub: { fr: 'Lycée Saint-Joseph, Sète · 2023', en: 'Lycée Saint-Joseph, Sète · 2023' } },
+  { cat: { fr: 'Certification', en: 'Certification' }, name: 'Badge IA Générative', sub: { fr: 'EFREI Paris', en: 'EFREI Paris' } },
+  { cat: { fr: 'Certification', en: 'Certification' }, name: 'Google Analytics', sub: { fr: 'Google · 2024', en: 'Google · 2024' } },
+  { cat: { fr: 'Certification (en cours)', en: 'Certification (in progress)' }, name: "CS50's Intro to AI with Python", sub: { fr: 'Harvard University', en: 'Harvard University' } },
+  { cat: { fr: 'Auto-formation', en: 'Self-learning' }, name: 'Microsoft Power BI', sub: { fr: 'DAX, Power Query, dashboards · 2024', en: 'DAX, Power Query, dashboards · 2024' } },
+  { cat: { fr: 'Auto-formation', en: 'Self-learning' }, name: { fr: 'Langage R', en: 'R Language' }, sub: { fr: 'Analyse statistique, manipulation de datasets', en: 'Statistical analysis, dataset manipulation' } },
+];
+
+const TECH = ['Python', 'PyTorch', 'TensorFlow', 'Keras', 'Scikit-Learn', 'Pandas', 'NumPy', 'SQL', 'Java', 'C', 'R', 'Power BI', 'Google Analytics', 'Git', 'Linux'];
+
+function renderEdu() {
+  const grid = document.getElementById('edu-grid');
+  grid.innerHTML = EDU_DATA.map(e => `
+    <div class="pf-skill-block">
+      <div class="pf-skill-cat">${typeof e.cat === 'string' ? e.cat : e.cat[lang]}</div>
+      <div class="pf-skill-name">${typeof e.name === 'string' ? e.name : e.name[lang]}</div>
+      <div class="pf-skill-sub">${typeof e.sub === 'string' ? e.sub : e.sub[lang]}</div>
+    </div>`).join('');
+
+  document.getElementById('tech-stack').innerHTML = TECH.map(t => `<span class="pf-tech-pill">${t}</span>`).join('');
+}
+
+// ─── SCROLL ANIMATIONS ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ─── COUNTER ANIMATION ───
+function animateCount(el) {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1200;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const val = Math.round(p * target);
+    el.textContent = val + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const countObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-count]').forEach(animateCount);
+      countObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+countObserver.observe(document.querySelector('.pf-stats'));
+
+// ─── INIT ───
+lang = detectLang();
+applyLang(lang);
+</script>
+</body>
+</html>
